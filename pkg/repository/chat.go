@@ -123,7 +123,7 @@ func (c *ChatRepository) UpdateLastMessageAndTime(chatId primitive.ObjectID, las
 	return nil
 }
 
-func (c *ChatRepository) ReadMessage(chatId primitive.ObjectID, senderId uint) (int64, error) {
+func (c *ChatRepository) ReadMessage(chatId primitive.ObjectID, senderId int64) (int64, error) {
 
 	filter := bson.M{"chat_id": chatId, "sender_id": senderId, "seen": false}
 

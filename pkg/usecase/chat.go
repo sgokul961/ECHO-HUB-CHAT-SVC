@@ -88,28 +88,28 @@ func (c *ChatUseCase) SaveMessage(chatId primitive.ObjectID, senderId int64, mes
 	return res, nil
 }
 
-// func (c *ChatUseCase) ReadMessage(userId uint, chatId primitive.ObjectID) (int64, error) {
+func (c *ChatUseCase) ReadMessage(userId int64, chatId primitive.ObjectID) (int64, error) {
 
-// 	isValid, err := c.Repo.IsValidChatId(chatId)
-// 	if err != nil {
-// 		return 0, err
-// 	}
-// 	if !isValid {
-// 		return 0, errors.New("chatId is not existing")
-// 	}
-// 	senderId, err := c.Repo.FetchRecipient(chatId, userId)
+	isValid, err := c.Repo.IsValidChatId(chatId)
+	if err != nil {
+		return 0, err
+	}
+	if !isValid {
+		return 0, errors.New("chatId is not existing")
+	}
+	senderId, err := c.Repo.FetchRecipient(chatId, userId)
 
-// 	if err != nil {
-// 		return 0, err
-// 	}
+	if err != nil {
+		return 0, err
+	}
 
-// 	res, err := c.Repo.ReadMessage(chatId, senderId)
-// 	if err != nil {
-// 		return 0, err
-// 	}
+	res, err := c.Repo.ReadMessage(chatId, senderId)
+	if err != nil {
+		return 0, err
+	}
 
-// 	return res, nil
-// }
+	return res, nil
+}
 
 func (c *ChatUseCase) FetchRecipient(chatId primitive.ObjectID, userId int64) (int64, error) { // <--------------------changed
 	isValid, err := c.Repo.IsValidChatId(chatId)
