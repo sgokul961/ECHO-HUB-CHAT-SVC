@@ -24,6 +24,8 @@ func (c *ChatHandler) CreateChatRoom(ctx context.Context, createroom *pb.ChatRoo
 	// Create chat room using the use case
 	err := c.UseCase.CreateChatRoom(createroom.FollowingId, createroom.FOllowerId)
 
+	fmt.Println("chatroom created:", createroom.FollowingId, createroom.FOllowerId)
+
 	// Check if there was an error
 	if err != nil {
 		// Return an error response

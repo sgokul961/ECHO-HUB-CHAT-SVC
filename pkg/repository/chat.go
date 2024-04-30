@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"fmt"
 	"time"
 
 	"github.com/sgokul961/echo-hub-chat-svc/pkg/domain"
@@ -27,6 +28,7 @@ func (c *ChatRepository) CreateChatRoom(user1, user2 int64) error {
 		Users:     []int64{user1, user2},
 		CreatedAt: time.Now(),
 	}
+	fmt.Println(" chat room id ", newChat)
 	_, err := c.ChatCollection.InsertOne(context.TODO(), &newChat)
 	return err
 }

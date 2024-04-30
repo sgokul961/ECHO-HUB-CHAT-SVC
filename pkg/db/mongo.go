@@ -13,6 +13,13 @@ import (
 func ConnectMongo(c config.Config) (*mongo.Database, error) {
 	ctx := context.TODO()
 	mongoConn := options.Client().ApplyURI(c.DB_URL)
+
+	mongoConn.SetAuth(options.Credential{
+		Username:      c.DBUsername,
+		Password:      c.DBPassword,
+		AuthSource:    c.DBUsername,
+		AuthMechanism: c.AuthMechanism,
+	})
 	mongoClient, err := mongo.Connect(ctx, mongoConn)
 	if err != nil {
 		return nil, err

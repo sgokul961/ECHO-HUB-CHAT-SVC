@@ -127,6 +127,7 @@ func (c *ChatUseCase) FetchRecipient(chatId primitive.ObjectID, userId int64) (i
 }
 func (c *ChatUseCase) CreateChatRoom(user1, user2 int64) error {
 	create := c.Repo.CreateChatRoom(user1, user2)
+	fmt.Println("create chatroom :", user1, user2)
 	if create != nil {
 		return create
 	}
